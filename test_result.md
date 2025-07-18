@@ -142,6 +142,9 @@ backend:
       - working: true
         agent: "main"
         comment: "Implemented reading progress tracking with page and chapter updates"
+      - working: true
+        agent: "testing"
+        comment: "Tested progress tracking endpoints. Update progress endpoint successfully saves user reading progress with proper upsert functionality. Get progress endpoint retrieves latest progress correctly. Database operations working properly with proper timestamp handling. Progress tracking fully functional."
 
 frontend:
   - task: "Manga Search Interface"
