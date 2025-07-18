@@ -26,29 +26,27 @@ const MangaReader = () => {
     
     setLoading(true);
     setSearchResults([]); // Clear previous results
+    setDebugInfo('Starting search...');
+    
     try {
-      console.log('Searching for:', searchQuery);
-      console.log('API URL:', `${API}/manga/search`);
+      const apiUrl = `${API}/manga/search`;
+      setDebugInfo(`Making request to: ${apiUrl}`);
       
-      const response = await axios.get(`${API}/manga/search`, {
+      const response = await axios.get(apiUrl, {
         params: { query: searchQuery, limit: 20 }
       });
       
-      console.log('Full response:', response);
-      console.log('Response data:', response.data);
-      console.log('Response status:', response.status);
+      setDebugInfo(`Response status: ${response.status}, Data: ${JSON.stringify(response.data)}`);
       
       if (response.data && response.data.manga) {
-        console.log('Manga array:', response.data.manga);
-        console.log('Manga count:', response.data.manga.length);
         setSearchResults(response.data.manga);
+        setDebugInfo(`Successfully set ${response.data.manga.length} results`);
       } else {
-        console.log('No manga data in response');
+        setDebugInfo('No manga data in response');
         setSearchResults([]);
       }
     } catch (error) {
-      console.error('Search error:', error);
-      console.error('Error response:', error.response);
+      setDebugInfo(`Error: ${error.message}`);
       setSearchResults([]);
     } finally {
       setLoading(false);
