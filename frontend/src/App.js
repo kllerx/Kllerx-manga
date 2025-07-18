@@ -188,38 +188,54 @@ const MangaReader = () => {
       </div>
 
       {searchResults.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {searchResults.map((manga) => (
-            <div key={manga.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <img
-                src={manga.cover_art}
-                alt={manga.title}
-                className="w-full h-64 object-cover"
-              />
-              <div className="p-4">
-                <h3 className="font-bold text-lg mb-2 line-clamp-2">{manga.title}</h3>
-                <p className="text-gray-600 text-sm mb-2">{manga.author}</p>
-                <p className="text-gray-500 text-xs mb-3 line-clamp-3">{manga.description}</p>
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => {
-                      setSelectedManga(manga);
-                      getMangaChapters(manga.id);
-                    }}
-                    className="flex-1 px-3 py-1 bg-green-500 text-white rounded text-sm hover:bg-green-600"
-                  >
-                    Ler
-                  </button>
-                  <button
-                    onClick={() => addToLibrary(manga)}
-                    className="px-3 py-1 bg-blue-500 text-white rounded text-sm hover:bg-blue-600"
-                  >
-                    + Biblioteca
-                  </button>
+        <div>
+          <p className="text-gray-600 mb-4">Encontrados {searchResults.length} resultados:</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {searchResults.map((manga) => (
+              <div key={manga.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                <img
+                  src={manga.cover_art}
+                  alt={manga.title}
+                  className="w-full h-64 object-cover"
+                />
+                <div className="p-4">
+                  <h3 className="font-bold text-lg mb-2 line-clamp-2">{manga.title}</h3>
+                  <p className="text-gray-600 text-sm mb-2">{manga.author}</p>
+                  <p className="text-gray-500 text-xs mb-3 line-clamp-3">{manga.description}</p>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => {
+                        setSelectedManga(manga);
+                        getMangaChapters(manga.id);
+                      }}
+                      className="flex-1 px-3 py-1 bg-green-500 text-white rounded text-sm hover:bg-green-600"
+                    >
+                      Ler
+                    </button>
+                    <button
+                      onClick={() => addToLibrary(manga)}
+                      className="px-3 py-1 bg-blue-500 text-white rounded text-sm hover:bg-blue-600"
+                    >
+                      + Biblioteca
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+        </div>
+      )}
+      
+      {loading && (
+        <div className="text-center py-8">
+          <div className="loading-spinner mb-4"></div>
+          <p className="text-gray-600">Buscando manga...</p>
+        </div>
+      )}
+      
+      {!loading && searchResults.length === 0 && searchQuery.trim() && (
+        <div className="text-center py-8">
+          <p className="text-gray-600">Nenhum resultado encontrado para "{searchQuery}"</p>
         </div>
       )}
     </div>
