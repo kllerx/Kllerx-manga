@@ -191,6 +191,12 @@ const MangaReader = () => {
             {loading ? 'Buscando...' : 'Buscar'}
           </button>
         </div>
+        
+        {debugInfo && (
+          <div className="mt-4 p-3 bg-gray-100 rounded-lg text-sm">
+            <strong>Debug:</strong> {debugInfo}
+          </div>
+        )}
       </div>
 
       {searchResults.length > 0 && (
