@@ -228,7 +228,7 @@ async def get_manga_details(manga_id: str):
             for rel in manga_data.get("relationships", []):
                 if rel["type"] == "cover_art":
                     cover_filename = rel["attributes"]["fileName"]
-                    cover_art_url = f"https://uploads.mangadx.org/covers/{manga_id}/{cover_filename}.256.jpg"
+                    cover_art_url = f"https://uploads.mangadex.org/covers/{manga_id}/{cover_filename}.256.jpg"
                     break
             
             # Get author
