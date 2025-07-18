@@ -127,6 +127,9 @@ backend:
       - working: true
         agent: "main"
         comment: "Implemented user library with add manga, progress tracking, and bookmark functionality"
+      - working: true
+        agent: "testing"
+        comment: "Tested library management endpoints. Add to library endpoint successfully adds manga with proper validation for duplicates. Get library endpoint returns user's manga collection with all required fields (id, user_id, manga_id, title, cover_art). MongoDB operations working correctly. All library functionality operational."
         
   - task: "Reading Progress Tracking"
     implemented: true
