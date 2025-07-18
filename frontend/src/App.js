@@ -10,6 +10,7 @@ const MangaReader = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [debugInfo, setDebugInfo] = useState(''); // Add debug state
   const [selectedManga, setSelectedManga] = useState(null);
   const [chapters, setChapters] = useState([]);
   const [currentChapter, setCurrentChapter] = useState(null);
